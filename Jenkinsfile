@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PYTHON = "C:\\Users\\LalithaPriya\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+        PYTHON = "py"
     }
 
     stages {
@@ -15,21 +15,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat '"%PYTHON%" -m pip install --upgrade pip'
-                bat '"%PYTHON%" -m pip install -r requirements.txt'
+                bat '%PYTHON% -m pip install --upgrade pip'
+                bat '%PYTHON% -m pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat '"%PYTHON%" -m pytest'
+                bat '%PYTHON% -m pytest'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Running Python app...'
-                bat '"%PYTHON%" app.py'
+                bat '%PYTHON% app.py'
             }
         }
     }
